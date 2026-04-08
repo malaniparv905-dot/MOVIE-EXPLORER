@@ -1,17 +1,109 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Movie Explorer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/action.css">
+    <link rel="stylesheet" href="css/thriller.css">
+    <link rel="stylesheet" href="css/comedy.css">
+    <link rel="stylesheet" href="css/scifi.css">
+    <link rel="stylesheet" href="css/horror.css">
+    <link rel="stylesheet" href="css/romance.css">
 </head>
 <body>
-    <input type="text" id="movieInput" placeholder="Search movie...">
-    <button id="searchBtn">Search</button>
-    <div id="loader">Loading...</div>
-    <div id="movies"></div>
-    <script src="./srcipt.js"></script>
+    <div class="app-container">
+        
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <h1>Movie Explorer</h1>
+            </div>
+            
+            <nav class="categories">
+                <span class="category-title">Explore Genres</span>
+                <button class="sidebar-link active" data-category="Home">
+                    <span class="icon">🏠</span> Home
+                </button>
+
+                <span class="category-title" style="margin-top: 1.5rem;">Library</span>
+                <button class="sidebar-link" data-category="Liked">
+                    <span class="icon">❤️</span> Liked Movies
+                </button>
+            </nav>
+            
+            <div class="theme-toggle-container">
+                <button id="themeToggle" class="theme-toggle">
+                    <span class="icon">☀️</span> <span class="theme-text">Light Mode</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Right Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <p class="tagline">Discover your favorite films, ratings, and plots instantly.</p>
+                <section class="search-section">
+                    <div class="search-container">
+                        <input type="text" id="movieInput" placeholder="Enter a movie name (e.g. Inception)...">
+                        <button id="searchBtn">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </section>
+            </header>
+
+            <!-- HOF Tracking Controls Toolbar -->
+            <section class="controls-toolbar hidden" id="controlsToolbar">
+                <div class="control-group">
+                    <label for="sortSelect">Sort By:</label>
+                    <select id="sortSelect">
+                        <option value="default">Default</option>
+                        <option value="year-desc">Newest First</option>
+                        <option value="year-asc">Oldest First</option>
+                        <option value="title-asc">Title (A-Z)</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Filter:</label>
+                    <button class="filter-btn active" data-category="Home">All</button>
+                    <button class="filter-btn" data-category="Action">Action</button>
+                    <button class="filter-btn" data-category="Thriller">Thriller</button>
+                    <button class="filter-btn" data-category="Comedy">Comedy</button>
+                    <button class="filter-btn" data-category="Sci-Fi">Sci-Fi</button>
+                    <button class="filter-btn" data-category="Horror">Horror</button>
+                    <button class="filter-btn" data-category="Romance">Romance</button>
+                </div>
+            </section>
+
+            <div id="loader" class="hidden">
+                <div class="spinner"></div>
+            </div>
+            <div id="error-message" class="hidden"></div>
+            
+            <section id="movies" class="movie-grid"></section>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button id="loadMoreBtn" class="hidden filter-btn" style="padding: 0.8rem 2rem; font-size: 1rem; border-radius: 8px;">View More</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Core Engine -->
+    <script src="main.js"></script>
+    
+    <!-- Isolated Genre Modules -->
+    <script src="js/home.js"></script>
+    <script src="js/action.js"></script>
+    <script src="js/thriller.js"></script>
+    <script src="js/comedy.js"></script>
+    <script src="js/scifi.js"></script>
+    <script src="js/horror.js"></script>
+    <script src="js/romance.js"></script>
 </body>
 </html>

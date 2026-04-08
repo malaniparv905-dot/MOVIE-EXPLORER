@@ -1,0 +1,9 @@
+/* css/romance.css */
+body.theme-romance {
+    --accent-color: #f43f5e; /* Rose / Pink */
+    --accent-hover: #e11d48;
+}
+body.light-theme.theme-romance {
+    --accent-color: #e11d48;
+    --accent-hover: #be123c;
+}

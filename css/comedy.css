@@ -1,0 +1,9 @@
+/* css/comedy.css */
+body.theme-comedy {
+    --accent-color: #eab308; /* Yellow */
+    --accent-hover: #ca8a04;
+}
+body.light-theme.theme-comedy {
+    --accent-color: #d97706;
+    --accent-hover: #b45309;
+}

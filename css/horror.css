@@ -1,0 +1,9 @@
+/* css/horror.css */
+body.theme-horror {
+    --accent-color: #ea580c; /* Orange / Rust */
+    --accent-hover: #c2410c;
+}
+body.light-theme.theme-horror {
+    --accent-color: #c2410c;
+    --accent-hover: #9a3412;
+}

@@ -1,0 +1,9 @@
+/* css/scifi.css */
+body.theme-scifi {
+    --accent-color: #22c55e; /* Neon Green */
+    --accent-hover: #16a34a;
+}
+body.light-theme.theme-scifi {
+    --accent-color: #16a34a;
+    --accent-hover: #15803d;
+}

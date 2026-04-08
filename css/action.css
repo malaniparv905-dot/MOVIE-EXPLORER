@@ -1,0 +1,9 @@
+/* css/action.css */
+body.theme-action {
+    --accent-color: #ef4444; /* Crimson Red */
+    --accent-hover: #dc2626;
+}
+body.light-theme.theme-action {
+    --accent-color: #dc2626;
+    --accent-hover: #b91c1c;
+}

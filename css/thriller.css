@@ -1,0 +1,9 @@
+/* css/thriller.css */
+body.theme-thriller {
+    --accent-color: #a855f7; /* Purple */
+    --accent-hover: #9333ea;
+}
+body.light-theme.theme-thriller {
+    --accent-color: #9333ea;
+    --accent-hover: #7e22ce;
+}
