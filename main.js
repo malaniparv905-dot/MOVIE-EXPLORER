@@ -1,4 +1,4 @@
-// js/main.js
+
 const API_KEY = "1f5fa721";
 
 window.currentMovies = [];
@@ -18,7 +18,7 @@ const themeToggle = document.getElementById("themeToggle");
 const themeText = document.querySelector(".theme-text");
 const themeIcon = themeToggle.querySelector(".icon");
 
-// Theme toggling logic
+
 themeToggle.addEventListener("click", () => {
     document.body.classList.toggle("light-theme");
     if (document.body.classList.contains("light-theme")) {
@@ -30,15 +30,15 @@ themeToggle.addEventListener("click", () => {
     }
 });
 
-// Genre dynamic theme applier
-window.applyGenreTheme = function(themeClass) {
+
+window.applyGenreTheme = function (themeClass) {
     const isLight = document.body.classList.contains("light-theme");
     document.body.className = "";
     if (isLight) document.body.classList.add("light-theme");
     if (themeClass) document.body.classList.add(themeClass);
 };
 
-// Modal Logic
+
 const modalOverlay = document.createElement("div");
 modalOverlay.classList.add("modal-overlay");
 document.body.appendChild(modalOverlay);
@@ -51,12 +51,12 @@ document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && modalOverlay.classList.contains("active")) window.closeModal();
 });
 
-window.closeModal = function() {
+window.closeModal = function () {
     modalOverlay.classList.remove("active");
     setTimeout(() => { modalOverlay.innerHTML = ""; }, 300);
 }
 
-// Side-bar active tracker
+
 const categoryLinks = document.querySelectorAll(".sidebar-link");
 categoryLinks.forEach(link => {
     link.addEventListener("click", () => {
@@ -65,7 +65,7 @@ categoryLinks.forEach(link => {
     });
 });
 
-// Search
+
 searchBtn.addEventListener("click", handleSearch);
 movieInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") handleSearch();
@@ -78,8 +78,8 @@ function handleSearch() {
         return;
     }
     categoryLinks.forEach(p => p.classList.remove("active"));
-    window.applyGenreTheme(""); // Reset to default theme for search
-    
+    window.applyGenreTheme("");
+
     window.currentSearchKeyword = movieName;
     window.currentPageNumber = 1;
     fetchMoviesBySearch(movieName, 1, false);
@@ -98,18 +98,18 @@ function hideError() {
     errorMessage.textContent = "";
 }
 
-// Dynamic Fetch core
-window.fetchDynamicGenre = async function(keywordsArray) {
+
+window.fetchDynamicGenre = async function (keywordsArray) {
     const randomKeyword = keywordsArray[Math.floor(Math.random() * keywordsArray.length)];
     const randomPage = Math.floor(Math.random() * 3) + 1;
-    movieInput.value = ""; 
-    
+    movieInput.value = "";
+
     window.currentSearchKeyword = randomKeyword;
     window.currentPageNumber = randomPage;
     await fetchMoviesBySearch(randomKeyword, randomPage, false);
 }
 
-// Core API Fetch
+
 async function fetchMoviesBySearch(searchTerm, page = 1, append = false) {
     hideError();
     if (!append) {
@@ -131,7 +131,7 @@ async function fetchMoviesBySearch(searchTerm, page = 1, append = false) {
             }
             controlsToolbar.classList.remove("hidden");
             window.applyFiltersAndSort();
-            
+
             document.getElementById('loadMoreBtn').classList.remove('hidden');
         } else {
             document.getElementById('loadMoreBtn').classList.add('hidden');
@@ -156,11 +156,11 @@ document.getElementById("loadMoreBtn").addEventListener("click", () => {
     fetchMoviesBySearch(window.currentSearchKeyword, window.currentPageNumber, true);
 });
 
-window.showLikedMovies = function() {
+window.showLikedMovies = function () {
     hideError();
     movieInput.value = "";
     document.getElementById("loadMoreBtn").classList.add("hidden");
-    
+
     const likedArray = Object.values(window.favorites);
     if (likedArray.length === 0) {
         movieContainer.innerHTML = `<p class="error">You haven't liked any movies yet! 🤍</p>`;
@@ -168,13 +168,13 @@ window.showLikedMovies = function() {
         window.currentMovies = [];
         return;
     }
-    
+
     window.currentMovies = likedArray;
     controlsToolbar.classList.remove("hidden");
     window.applyFiltersAndSort();
 }
 
-window.applyFiltersAndSort = function() {
+window.applyFiltersAndSort = function () {
     if (!window.currentMovies || window.currentMovies.length === 0) return;
 
     let processedMovies = [...window.currentMovies];
@@ -188,7 +188,7 @@ window.applyFiltersAndSort = function() {
         } else if (sortVal === "title-asc") {
             return a.Title.localeCompare(b.Title);
         }
-        return 0; 
+        return 0;
     });
 
     displayMovies(processedMovies);
@@ -196,14 +196,11 @@ window.applyFiltersAndSort = function() {
 
 sortSelect.addEventListener("change", window.applyFiltersAndSort);
 
-// Listen globally for newly added html elements .filter-btn
+
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("filter-btn")) {
         document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
         e.target.classList.add("active");
-        
-        // Also untoggle sidebar if necessary so they aren't both highlighted weirdly, 
-        // except Home which holds sync
         const category = e.target.getAttribute("data-category");
         if (category !== "Home") {
             document.querySelectorAll(".sidebar-link").forEach(b => b.classList.remove("active"));
@@ -211,8 +208,6 @@ document.addEventListener("click", (e) => {
             document.querySelector('.sidebar-link[data-category="Home"]').classList.add("active");
         }
     }
-    
-    // Reverse sync: click sidebar Home -> trigger filter Home active
     if (e.target.closest('.sidebar-link') && e.target.closest('.sidebar-link').getAttribute("data-category") === "Home") {
         document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
         document.querySelector('.filter-btn[data-category="Home"]').classList.add("active");
@@ -249,15 +244,15 @@ function displayMovies(movies) {
     movieContainer.innerHTML = moviesHTML;
 }
 
-window.toggleFavorite = function(event, id) {
+window.toggleFavorite = function (event, id) {
     event.stopPropagation();
     const btn = event.currentTarget;
-    
+
     if (window.favorites[id]) {
         delete window.favorites[id];
         btn.classList.remove("favorited");
         btn.textContent = "🤍";
-        
+
         const activeLink = document.querySelector('.sidebar-link.active');
         if (activeLink && activeLink.getAttribute('data-category') === "Liked") {
             window.showLikedMovies();
@@ -272,7 +267,7 @@ window.toggleFavorite = function(event, id) {
     }
 };
 
-window.getMovieDetails = async function(id) {
+window.getMovieDetails = async function (id) {
     document.body.style.cursor = 'wait';
     try {
         const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&i=${id}&plot=full`);
