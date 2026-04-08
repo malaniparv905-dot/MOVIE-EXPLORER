@@ -2,7 +2,7 @@
 
 A premium, modular web application built for film enthusiasts to search, discover, and organize movies. Powered by the **OMDb API**, Movie Explorer combines a beautiful, glassmorphic UI with dynamic content loading.
 
-![Movie Explorer UI Demo](https://via.placeholder.com/800x400.png?text=Movie+Explorer+Preview) *(Replace with actual screenshot)*
+![Movie Explorer UI Demo](./ui-demo.png)
 
 ## ✨ Key Features
 
