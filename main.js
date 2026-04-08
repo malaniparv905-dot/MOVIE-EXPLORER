@@ -311,3 +311,4 @@ function showPopup(movie) {
     `;
     modalOverlay.classList.add("active");
 }
+
