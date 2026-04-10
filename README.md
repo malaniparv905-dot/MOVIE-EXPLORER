@@ -1,7 +1,7 @@
 # 🍿 Movie Explorer
 
 A premium, modular web application built for film enthusiasts to search, discover, and organize movies. Powered by the **OMDb API**, Movie Explorer combines a beautiful, glassmorphic UI with dynamic content loading.
-
+VERCEL LINK - https://movie-explorer-six-iota.vercel.app/
 ![Movie Explorer UI Demo](./ui-demo.png)
 
 ## ✨ Key Features
